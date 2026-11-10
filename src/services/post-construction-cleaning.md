@@ -11,8 +11,8 @@ eyebrow: Post-construction cleaning
 hero_heading: From rough clean to final walkthrough.
 intro: Construction cleanup for builders, contractors, developers and renovation projects, with one team for every phase.
 hero_image:
-  src: ""
-  alt: ""
+  src: https://images.unsplash.com/photo-1733431772808-82d878e59000
+  alt: Large interior under construction with taped drywall and work lights
 who_for:
   - General contractors and builders
   - Developers and new-build projects

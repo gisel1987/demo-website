@@ -11,8 +11,8 @@ eyebrow: Residential cleaning
 hero_heading: A clean home, on your schedule.
 intro: Weekly, biweekly or monthly cleaning that keeps your home fresh, so you can spend your time on everything else.
 hero_image:
-  src: https://images.unsplash.com/photo-1502005097973-6a7082348e28
-  alt: Spotless modern kitchen with white island and cabinets
+  src: https://images.unsplash.com/photo-1647381518264-97ff1835026f
+  alt: Cleaner in a bright kitchen holding a caddy of cleaning supplies and a broom
 who_for:
   - Busy households and families
   - Homeowners and renters

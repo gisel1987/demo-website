@@ -103,4 +103,4 @@ Add a **Domain** property for gecleaningsolutions.com and verify with the TXT re
 - Pages CMS configuration: `.pages.yml`.
 
 ## Photo credits
-Stock photos from Unsplash (Unsplash License): Andrea De Santis, Jason Briscoe, roam in color, Adolfo Félix, Alex Tyson.
+Stock photos from Unsplash (Unsplash License): Andrea De Santis, Josue Michel, Jason Briscoe, roam in color, Alex Tyson, Brian Wangenheim, Adolfo Félix.
