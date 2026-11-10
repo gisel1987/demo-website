@@ -1,0 +1,11 @@
+<div class="ba-grid">
+  {%- for p in gallery.projects %}{% if not galleryLimit or loop.index <= galleryLimit %}
+  <figure class="ba">
+    <div class="ba-pair">
+      <div class="ba-img"><img src="{{ p.before }}" alt="Before: {{ p.title }}" loading="lazy" decoding="async"><span class="ba-tag">Before</span></div>
+      <div class="ba-img"><img src="{{ p.after }}" alt="After: {{ p.title }}" loading="lazy" decoding="async"><span class="ba-tag after">After</span></div>
+    </div>
+    <figcaption><b>{{ p.title }}</b><span>{{ p.service }}{% if p.town %} · {{ p.town }}{% endif %}</span>{% if p.note %}<p>{{ p.note }}</p>{% endif %}</figcaption>
+  </figure>
+  {%- endif %}{% endfor %}
+</div>

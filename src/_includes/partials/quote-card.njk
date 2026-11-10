@@ -1,0 +1,6 @@
+<section class="next"><div class="wrap">
+  <div class="quote-card">
+    <div><b>{{ quote_heading or "Ready when you are." }}</b><span>Free quotes, usually within 24 hours. Call {{ settings.phone }} or send a request.</span></div>
+    <a class="btn btn-primary btn-lg" href="/contact/{% if form_key %}?service={{ form_key }}{% endif %}">Request a Free Quote {% icon "arrow" %}</a>
+  </div>
+</div></section>

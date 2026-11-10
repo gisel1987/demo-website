@@ -1,0 +1,41 @@
+---
+layout: layouts/base.njk
+permalink: /service-areas/
+title: Service Areas
+seo_title: "Service Areas: Bergen, Passaic, Essex & Morris County NJ"
+description: "Cleaning services in Bergen, Passaic, Essex and Morris County, Central NJ, Rockland County NY and Eastern PA. Check if we serve your town."
+keywords: cleaning service areas NJ, cleaning company Bergen County, cleaning company Passaic County, cleaning company Essex County, cleaning company Morris County
+---
+<section class="page-hero page-hero-slim"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Service Areas</nav>
+  <span class="eyebrow light">We come to you</span>
+  <h1>Service areas.</h1>
+  <p>Focused on {{ settings.primary_counties | and_list }} counties, and serving Central New Jersey, Rockland County NY and Eastern Pennsylvania.</p>
+  <div class="hero-actions"><a class="btn btn-primary btn-lg" href="/contact/">Request a Free Quote {% icon "arrow" %}</a></div>
+</div></section>
+
+<section class="block areas-compact" id="service-areas"><div class="wrap">
+  <div class="areas-head">
+    <div><h2>Is your town on our list?</h2><p>Every town we serve is searchable.</p></div>
+    <div class="town-check"><label for="town-q">Check your town</label><input id="town-q" class="town-q" type="search" placeholder="e.g. Paramus" autocomplete="off"><p class="town-result" aria-live="polite"></p></div>
+  </div>
+  <div class="states">
+    {%- for st in areas.states %}
+    <div class="state"><h3>{{ st.name }}</h3>
+      <ul class="county-list">
+        {%- for c in st.counties %}
+        <li{% if c.focus %} class="focus"{% endif %}><b>{{ c.name }}</b><span>{{ c.towns.slice(0, 3) | join(", ") }}{% if c.towns.length > 3 %} &amp; {{ c.towns.length - 3 }} more{% endif %}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+    {%- endfor %}
+  </div>
+  {%- if collections.areas.length %}
+  <div class="area-pages"><h3>Town pages</h3><div class="other-grid">
+    {%- for a in collections.areas %}<a class="other" href="{{ a.url }}"><span class="icon">{% icon "pin" %}</span><b>{{ a.data.title }}</b>{% icon "arrow", "go" %}</a>{% endfor %}
+  </div></div>
+  {%- endif %}
+  <script type="application/json" id="town-data">{{ areas | town_index | json | safe }}</script>
+</div></section>
+
+{% include "partials/quote-card.njk" %}

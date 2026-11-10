@@ -1,0 +1,10 @@
+# Customer reviews. Add real reviews only (for example, copied from Google with the customer's name as shown there).
+# Edit in Pages CMS → "Customer reviews". The reviews section stays hidden until at least one review is added.
+reviews: []
+# Example of one review:
+#  - name: Jane D.
+#    town: Wayne, NJ
+#    service: Move-In/Move-Out Cleaning
+#    rating: 5
+#    text: The apartment was spotless and ready for our tenants the next day.
+#    source: Google

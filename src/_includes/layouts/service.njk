@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+---
+{%- set svcIcons = {"residential": "home", "deep": "deep", "move": "door", "post_construction": "hardhat", "commercial": "building"} -%}
+<section class="svc-hero3"><div class="wrap svc-hero3-grid">
+  <div class="svc-hero3-copy">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> {{ title }}</nav>
+    <span class="eyebrow light">{{ eyebrow }}</span>
+    <h1>{{ hero_heading }}</h1>
+    <p class="lead">{{ intro }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="/contact/?service={{ form_key }}">Request a Free Quote {% icon "arrow" %}</a>
+      <a class="btn btn-ghost btn-lg" href="tel:+1{{ settings.phone | digits }}">{% icon "phone" %} {{ settings.phone }}</a>
+    </div>
+    <p class="hero-creds">{{ settings.credentials | join(" · ") }}</p>
+  </div>
+  <div class="svc-hero3-visual">
+    {%- if hero_image and hero_image.src %}
+      {% photo hero_image, "", "(max-width: 1020px) 100vw, 45vw", "4:3", true %}
+    {%- else %}
+      {% include "partials/frame.njk" %}
+    {%- endif %}
+  </div>
+</div></section>
+
+<section class="block"><div class="wrap svc-detail2">
+  <div class="svc-col">
+    <h2>What's included</h2>
+    <ul class="checklist">{% for item in includes %}<li>{% icon "check" %}<span>{{ item }}</span></li>{% endfor %}</ul>
+  </div>
+  <aside class="svc-col who-card">
+    <span class="icon">{% icon svcIcons[form_key] or "sparkle" %}</span>
+    <h2>Who it's for</h2>
+    <ul class="who-list">{% for w in who_for %}<li>{{ w }}</li>{% endfor %}</ul>
+    <a class="btn btn-navy" href="/contact/?service={{ form_key }}">Get my free quote</a>
+  </aside>
+</div></section>
+
+{%- if highlight and highlight.items %}
+<section class="block tint"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">{{ title }}</span><h2>{{ highlight.heading }}</h2></div>
+  <div class="hl-grid hl-{{ highlight.items | length }}">
+    {%- for it in highlight.items %}
+    <div class="hl"><b>{{ it.title }}</b><p>{{ it.text }}</p></div>
+    {%- endfor %}
+  </div>
+</div></section>
+{%- endif %}
+
+<section class="block"><div class="wrap prose-wrap">
+  <div class="prose">{{ content | safe }}</div>
+  {%- if faqs and faqs.length %}
+  <div class="faq2">
+    <h2>Common questions</h2>
+    {%- for f in faqs %}
+    <div class="qa"><h3>{{ f.q }}</h3><p>{{ f.a }}</p></div>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+</div></section>
+
+<section class="block other-svcs"><div class="wrap">
+  <h2 class="other-title">Other services</h2>
+  <div class="other-grid">
+    {%- for svc in collections.services %}{% if svc.url != page.url %}
+    <a class="other" href="{{ svc.url }}"><span class="icon">{% icon svcIcons[svc.data.form_key] or "sparkle" %}</span><b>{{ svc.data.title }}</b>{% icon "arrow", "go" %}</a>
+    {%- endif %}{% endfor %}
+  </div>
+</div></section>
+
+{% set quote_heading = "Get a free quote for " + (title | lower) + "." %}
+{% include "partials/quote-card.njk" %}

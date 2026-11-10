@@ -1,0 +1,13 @@
+{
+  "name": "ge-cleaning-solutions-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.7",
+    "js-yaml": "4.1.0"
+  }
+}

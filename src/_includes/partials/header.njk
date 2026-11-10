@@ -1,0 +1,28 @@
+{%- set s = settings -%}
+<a class="skip" href="#main">Skip to content</a>
+{%- if s.demo_banner %}
+<div class="demo-bar"><b>Concept demo</b> — redesign preview for {{ s.business_name }}</div>
+{%- endif %}
+<div class="topbar"><div class="wrap topbar-row">
+  <span>{% icon "pin" %} Serving {{ s.service_area_summary }}</span>
+  <span class="topbar-creds">{{ s.credentials | join(" · ") }}</span>
+</div></div>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="{{ s.business_name }} home"><span class="brand-mark">G&amp;E</span><span class="brand-text"><strong>{{ s.business_name }}</strong><span>Homes · Construction · Commercial</span></span></a>
+    <div class="nav-actions">
+      <a class="nav-phone" href="tel:+1{{ s.phone | digits }}">{% icon "phone" %} {{ s.phone }}</a>
+      <a class="btn btn-primary nav-quote" href="/contact/{% if form_key %}?service={{ form_key }}{% endif %}">Request a Free Quote</a>
+    </div>
+  </div>
+  <nav class="mainnav" aria-label="Main"><div class="wrap">
+    <ul class="menu">
+      <li><a href="/"{% if page.url == "/" %} class="active" aria-current="page"{% endif %}>Home</a></li>
+      {%- for svc in collections.services %}
+      <li><a href="{{ svc.url }}"{% if page.url == svc.url %} class="active" aria-current="page"{% endif %}>{{ svc.data.nav_label }}</a></li>
+      {%- endfor %}
+      <li><a href="/about/"{% if page.url == "/about/" %} class="active" aria-current="page"{% endif %}>About Us</a></li>
+      <li><a href="/contact/"{% if page.url == "/contact/" %} class="active" aria-current="page"{% endif %}>Contact</a></li>
+    </ul>
+  </div></nav>
+</header>

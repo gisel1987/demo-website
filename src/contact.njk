@@ -1,0 +1,113 @@
+---
+layout: layouts/base.njk
+permalink: /contact/
+title: Request a Free Quote
+seo_title: "Request a Free Cleaning Quote | G&E Cleaning Solutions"
+description: "Request a free quote for residential, deep, move, post-construction or commercial cleaning in Northern & Central NJ. Replies within 24 hours."
+keywords: cleaning quote NJ, free cleaning estimate Bergen County, cleaning company Passaic County contact
+---
+{%- set s = settings -%}
+{%- set svcIcons = {"residential": "home", "deep": "deep", "move": "door", "post_construction": "hardhat", "commercial": "building"} -%}
+<section class="page-hero page-hero-slim"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Contact</nav>
+  <span class="eyebrow light">Contact · Request a quote</span>
+  <h1>Request a Free Quote</h1>
+  <p>Tell us about your property and we'll get back to you, usually within 24 hours. Prefer to talk? Call {{ s.phone }}.</p>
+</div></section>
+
+<section class="block quote-wrap"><div class="wrap contact-grid">
+  <div class="form-card">
+    <form id="quote-form" data-endpoint="{{ s.form_endpoint }}" novalidate>
+      <input type="hidden" name="_subject" value="New quote request">
+      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <fieldset class="step">
+        <legend><span class="step-n">1</span> What do you need cleaned?</legend>
+        <div class="svc-pick" role="radiogroup" aria-label="Type of cleaning service">
+          {%- for svc in collections.services %}
+          <label class="pick"><input type="radio" name="Service" value="{{ svc.data.title }}" data-key="{{ svc.data.form_key }}" required><span>{% icon svcIcons[svc.data.form_key] %}<b>{{ svc.data.title }}</b></span></label>
+          {%- endfor %}
+          <label class="pick"><input type="radio" name="Service" value="Not sure yet" data-key="other"><span>{% icon "sparkle" %}<b>Not sure yet</b></span></label>
+        </div>
+        <p class="field-error" data-error-for="Service" hidden>Choose a service so we can ask the right questions.</p>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend><span class="step-n">2</span> About the property</legend>
+        <div class="fields">
+          <div class="field"><label for="f-city">City or town *</label><input id="f-city" name="City" required autocomplete="address-level2" placeholder="e.g. Wayne"></div>
+          <div class="field"><label for="f-zip">ZIP code *</label><input id="f-zip" name="ZIP code" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" placeholder="07470"></div>
+          <div class="field"><label for="f-sqft">Approximate square footage</label>
+            <select id="f-sqft" name="Square footage"><option value="">Select a size</option><option>Under 1,000 sq ft</option><option>1,000–2,000 sq ft</option><option>2,000–3,000 sq ft</option><option>3,000–5,000 sq ft</option><option>5,000–10,000 sq ft</option><option>Over 10,000 sq ft</option><option>Not sure</option></select></div>
+
+          <div class="field" data-for="residential deep move"><label for="f-bed">Bedrooms</label>
+            <select id="f-bed" name="Bedrooms"><option value="">Select</option><option>Studio</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div>
+          <div class="field" data-for="residential deep move"><label for="f-bath">Bathrooms</label>
+            <select id="f-bath" name="Bathrooms"><option value="">Select</option><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option>3</option><option>3.5</option><option>4+</option></select></div>
+
+          <div class="field" data-for="move"><label for="f-move">Type of move</label>
+            <select id="f-move" name="Move type"><option value="">Select</option><option>Moving in</option><option>Moving out</option><option>Rental turnover between tenants</option><option>Listing or showing prep</option></select></div>
+          <div class="field" data-for="move"><label for="f-empty">Will the home be empty?</label>
+            <select id="f-empty" name="Home empty"><option value="">Select</option><option>Yes, fully empty</option><option>Partly furnished</option><option>No, still furnished</option></select></div>
+
+          <div class="field" data-for="post_construction"><label for="f-ptype">Project type</label>
+            <select id="f-ptype" name="Project type"><option value="">Select</option><option>New home build</option><option>Home renovation</option><option>Commercial build-out or fit-out</option><option>Multi-unit / apartment project</option><option>Other</option></select></div>
+          <div class="field" data-for="post_construction"><label for="f-phase">Cleaning phase needed</label>
+            <select id="f-phase" name="Project phase"><option value="">Select</option><option>Rough clean (during construction)</option><option>Final clean (before punch list)</option><option>Touch-up (after punch items)</option><option>All phases</option><option>Not sure</option></select></div>
+
+          <div class="field" data-for="commercial"><label for="f-biz">Type of business</label>
+            <select id="f-biz" name="Business type"><option value="">Select</option><option>Office</option><option>Retail</option><option>Medical or wellness</option><option>Restaurant</option><option>Apartment or building common areas</option><option>Other</option></select></div>
+
+          <div class="field" data-for="residential deep move commercial other"><label for="f-cond">Property condition</label>
+            <select id="f-cond" name="Property condition"><option value="">Select</option><option>Well kept</option><option>Average, regular wear</option><option>Needs extra attention</option><option>Heavily soiled or neglected</option></select></div>
+          <div class="field" data-for="post_construction"><label for="f-cond2">Site condition</label>
+            <select id="f-cond2" name="Property condition"><option value="">Select</option><option>Heavy dust and debris</option><option>Light construction dust</option><option>Ready for final detailing</option><option>Not sure</option></select></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend><span class="step-n">3</span> Timing</legend>
+        <div class="fields">
+          <div class="field" data-for="residential deep other"><label for="f-freq">How often?</label>
+            <select id="f-freq" name="Cleaning frequency"><option value="">Select</option><option>One-time</option><option>Weekly</option><option>Every 2 weeks</option><option>Monthly</option><option>Not sure yet</option></select></div>
+          <div class="field" data-for="commercial"><label for="f-freq2">How often?</label>
+            <select id="f-freq2" name="Cleaning frequency"><option value="">Select</option><option>One-time</option><option>Daily</option><option>A few times a week</option><option>Weekly</option><option>Every 2 weeks</option><option>Monthly</option></select></div>
+          <div class="field"><label for="f-date">Preferred service date</label><input id="f-date" type="date" name="Preferred date"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="step">
+        <legend><span class="step-n">4</span> Your details</legend>
+        <div class="fields">
+          <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="Name" required autocomplete="name"></div>
+          <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" type="tel" name="Phone" required autocomplete="tel" placeholder="(201) 555-0123"></div>
+          <div class="field full"><label for="f-email">Email *</label><input id="f-email" type="email" name="Email" required autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field full"><label for="f-details">Anything else we should know?</label><textarea id="f-details" name="Details" placeholder="Access, pets, parking, special requests, deadlines…"></textarea></div>
+          {%- if s.form_accepts_photos %}
+          <div class="field full"><label for="f-photos">Photos (optional)</label>
+            <label class="drop" for="f-photos">{% icon "camera" %}<span><b>Add photos of the space</b><small>Up to 5 images, 10 MB each. Photos help us quote accurately.</small></span></label>
+            <input id="f-photos" class="file-input" type="file" name="Photos" accept="image/*" multiple>
+            <p class="file-list" aria-live="polite"></p></div>
+          {%- endif %}
+        </div>
+      </fieldset>
+
+      <p class="form-error" role="alert" hidden></p>
+      <div class="form-foot"><small>We never share your information.</small><button class="btn btn-primary btn-lg" type="submit">Request my free quote {% icon "arrow" %}</button></div>
+    </form>
+    <div class="success" hidden>
+      <span class="icon">{% icon "check" %}</span>
+      <h2>Thanks, your request is in.</h2>
+      <p>We'll get back to you within 24 hours. Need it sooner? Call <a href="tel:+1{{ s.phone | digits }}">{{ s.phone }}</a>.</p>
+      <a id="mail-fallback" class="btn btn-outline" href="#" hidden>Also send by email</a>
+    </div>
+  </div>
+
+  <aside class="info-card">
+    <h3>Prefer to talk?</h3>
+    <div class="info-row">{% icon "phone" %}<div><small>Phone</small><a href="tel:+1{{ s.phone | digits }}">{{ s.phone }}</a></div></div>
+    <div class="info-row">{% icon "mail" %}<div><small>Email</small><a href="mailto:{{ s.email }}">{{ s.email }}</a></div></div>
+    <div class="info-row">{% icon "clock" %}<div><small>Availability</small><b>{{ s.hours_note }}</b></div></div>
+    <div class="info-row">{% icon "pin" %}<div><small>Service area</small><b>{{ s.primary_counties | and_list }} counties, Central NJ, Rockland County NY &amp; Eastern PA</b><a class="info-link" href="/service-areas/">Check your town</a></div></div>
+  </aside>
+</div></section>

@@ -1,0 +1,45 @@
+# Service areas by state and county. Edit in Pages CMS → "Service areas".
+# "focus: true" counties are featured first and used in search titles.
+# The first 3 towns of each county are shown; every town is searchable on the site.
+states:
+  - name: New Jersey
+    abbr: NJ
+    counties:
+      - name: Bergen
+        focus: true
+        towns: [Hackensack, Paramus, Ridgewood, Fair Lawn, Glen Rock, Ramsey, Mahwah, Oakland, Franklin Lakes, Wyckoff, Midland Park, Waldwick]
+      - name: Passaic
+        focus: true
+        towns: [Totowa, Paterson, Clifton, Wayne, Little Falls, Woodland Park, Passaic, Hawthorne, Pompton Lakes, Bloomingdale, Wanaque, Ringwood, Haledon, North Haledon, Prospect Park, West Milford]
+      - name: Essex
+        focus: true
+        towns: [Newark, Montclair, Livingston, West Orange, Verona, Cedar Grove, Nutley, Belleville, East Orange]
+      - name: Morris
+        focus: true
+        towns: [Morristown, Parsippany, Montville, Pompton Plains, Lincoln Park, Boonton, Mountain Lakes, Rockaway, Dover, Denville, Randolph, Morris Plains, Florham Park, Madison, Chatham]
+      - name: Hudson
+        towns: [Kearny]
+      - name: Union
+        towns: [Elizabeth, Westfield, Summit, Union, Plainfield, Linden, Rahway, Cranford, Clark, Scotch Plains, Mountainside, Springfield, Hillside, Kenilworth, Roselle, Roselle Park]
+      - name: Middlesex
+        towns: [Edison, New Brunswick, Woodbridge, Perth Amboy, Sayreville, South Amboy, South Plainfield, South River, Metuchen, Carteret, Colonia, Iselin, Old Bridge, East Brunswick, Dunellen, Highland Park, Milltown, Spotswood, Cranbury, Plainsboro]
+      - name: Somerset
+        towns: [Bridgewater, Somerville, Basking Ridge, Bound Brook, Raritan, Manville, Bernardsville, Warren, Watchung, North Plainfield]
+      - name: Mercer
+        towns: [Princeton, Trenton, Hamilton, Ewing, Lawrenceville, Hopewell, Pennington]
+      - name: Burlington
+        towns: [Mount Laurel, Moorestown, Marlton, Evesham, Medford, Bordentown, Burlington City, Florence, Pemberton, Willingboro, Lumberton, Hainesport, Cinnaminson, Delran, Riverside, Palmyra, Edgewater Park, Maple Shade]
+      - name: Camden
+        towns: [Cherry Hill, Haddonfield, Voorhees, Haddon Township, Collingswood]
+  - name: New York
+    abbr: NY
+    counties:
+      - name: Rockland
+        towns: [Nyack, New City, Nanuet, Suffern, Spring Valley, Pearl River, West Nyack, Valley Cottage, Bardonia, Blauvelt, Tappan, Orangeburg, Monsey, Airmont, Hillburn, Sloatsburg, Haverstraw, Stony Point]
+  - name: Pennsylvania
+    abbr: PA
+    counties:
+      - name: Lehigh
+        towns: [Allentown, Whitehall]
+      - name: Northampton
+        towns: [Bethlehem, Easton]

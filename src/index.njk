@@ -1,0 +1,82 @@
+---
+layout: layouts/base.njk
+permalink: /
+use_home_seo: true
+---
+{%- set svcIcons = {"residential": "home", "deep": "deep", "move": "door", "post_construction": "hardhat", "commercial": "building"} -%}
+{%- set homeKeys = ["residential", "deep", "move"] -%}
+<section class="hero2"><div class="wrap hero2-grid">
+  <div class="hero2-copy">
+    <span class="eyebrow light">{{ home.hero_eyebrow }}</span>
+    <h1>{{ home.hero_heading }}</h1>
+    <p class="lead">{{ home.hero_text }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="/contact/">Request a Free Quote {% icon "arrow" %}</a>
+      <a class="btn btn-ghost btn-lg" href="tel:+1{{ settings.phone | digits }}">{% icon "phone" %} {{ settings.phone }}</a>
+    </div>
+  </div>
+  <div class="hero2-visual">
+    <div class="hero-photo">{% photo home.hero_image, "", "(max-width: 1020px) 100vw, 45vw", "4:5", true %}</div>
+    <ul class="trust-card">
+      {%- for c in settings.credentials %}<li>{% icon "check" %}{{ c }}</li>{% endfor %}
+      <li>{% icon "clock" %}{{ settings.hours_note }}</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">Our services</span><h2>What can we clean for you?</h2></div>
+  <div class="audience-split">
+    <div class="aud-col">
+      <h3>{{ home.homes_heading }}</h3><p>{{ home.homes_text }}</p>
+      <div class="svc-cards">
+        {%- for svc in collections.services %}{% if svc.data.form_key in homeKeys %}
+        <a class="svc-card" href="{{ svc.url }}"><span class="icon">{% icon svcIcons[svc.data.form_key] %}</span><b>{{ svc.data.title }}</b><small>{{ svc.data.intro }}</small><span class="go">Learn more {% icon "arrow" %}</span></a>
+        {%- endif %}{% endfor %}
+      </div>
+    </div>
+    <div class="aud-col">
+      <h3>{{ home.business_heading }}</h3><p>{{ home.business_text }}</p>
+      <div class="svc-cards">
+        {%- for svc in collections.services %}{% if svc.data.form_key not in homeKeys %}
+        <a class="svc-card" href="{{ svc.url }}"><span class="icon">{% icon svcIcons[svc.data.form_key] %}</span><b>{{ svc.data.title }}</b><small>{{ svc.data.intro }}</small><span class="go">Learn more {% icon "arrow" %}</span></a>
+        {%- endif %}{% endfor %}
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="block tint"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">How it works</span><h2>Simple from first call to final walkthrough.</h2></div>
+  <ol class="steps2">{% for st in home.steps %}<li><span class="n">{{ loop.index }}</span><b>{{ st.title }}</b><p>{{ st.text }}</p></li>{% endfor %}</ol>
+</div></section>
+
+{%- if reviews.reviews and reviews.reviews.length %}
+{% include "partials/reviews.njk" %}
+{%- endif %}
+
+{%- if gallery.projects and gallery.projects.length %}
+<section class="block"><div class="wrap">
+  <div class="section-head split-head"><div><span class="eyebrow">Our work</span><h2>Before &amp; after.</h2></div><a class="btn btn-outline" href="/about/#our-work">See all projects</a></div>
+  {% set galleryLimit = 2 %}{% include "partials/gallery.njk" %}
+</div></section>
+{%- endif %}
+
+<section class="block areas-home"><div class="wrap areas-home-grid">
+  <div>
+    <span class="eyebrow">Where we work</span>
+    <h2>Serving {{ settings.primary_counties | and_list }} counties.</h2>
+    <p>Plus Central New Jersey, Rockland County NY and Eastern Pennsylvania.</p>
+    <a class="btn btn-outline" href="/service-areas/">See all service areas</a>
+  </div>
+  <ul class="county-chips">
+    {%- for st in areas.states %}{% for c in st.counties %}{% if c.focus %}
+    <li><b>{{ c.name }} County</b><span>{{ c.towns | first }}, {{ c.towns[1] }}, {{ c.towns[2] }}</span></li>
+    {%- endif %}{% endfor %}{% endfor %}
+  </ul>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="wrap"><div class="cta-band">
+  <div><h2>Whether it's a new build, a move or your home every week, we're ready when you are.</h2><p>Free quotes, usually within 24 hours.</p></div>
+  <div class="actions"><a class="btn btn-white" href="tel:+1{{ settings.phone | digits }}">{% icon "phone" %} Call {{ settings.phone }}</a><a class="btn btn-ghost" href="/contact/">Request a Free Quote</a></div>
+</div></div></section>

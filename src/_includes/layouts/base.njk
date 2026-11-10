@@ -1,0 +1,46 @@
+{%- set s = settings -%}
+{%- set seo_title = home.seo_title if use_home_seo else seo_title -%}
+{%- set description = home.description if use_home_seo else description -%}
+{%- set keywords = home.keywords if use_home_seo else keywords -%}
+{%- set pageTitle = seo_title or ((title + " | " + s.business_name) if title else s.business_name) -%}
+{%- set canonical = page.url | absolute(s.url) -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ description }}">
+{%- if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
+<link rel="canonical" href="{{ canonical }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ s.business_name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+{%- set ogimg = (hero_image.src if (hero_image and hero_image.src) else home.hero_image.src) %}
+{%- if ogimg %}<meta property="og:image" content="{% if ogimg.startsWith('http') %}{{ ogimg }}?auto=format&fit=crop&w=1200&h=630&q=80{% else %}{{ ogimg | absolute(s.url) }}{% endif %}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021A34">
+{%- if s.demo_banner %}<meta name="robots" content="noindex, nofollow">{% endif %}
+{%- if s.google_site_verification %}<meta name="google-site-verification" content="{{ s.google_site_verification }}">{% endif %}
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+{% include "partials/schema.njk" %}
+{%- if s.google_analytics_id %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ s.google_analytics_id }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','{{ s.google_analytics_id }}');</script>
+{%- endif %}
+</head>
+<body>
+{% include "partials/header.njk" %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

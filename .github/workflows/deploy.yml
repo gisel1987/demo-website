@@ -1,0 +1,48 @@
+# Builds the site and publishes it to GitHub Pages on every change to main,
+# including edits saved from Pages CMS.
+# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+name: Publish website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Before the custom domain is connected the site lives at /<repo-name>/.
+      # Once src/CNAME exists (custom domain), it lives at the root.
+      - name: Work out the site path
+        run: |
+          if [ -f src/CNAME ]; then echo "PATH_PREFIX=/" >> "$GITHUB_ENV"; else echo "PATH_PREFIX=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_ENV"; fi
+      - run: npx @11ty/eleventy
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

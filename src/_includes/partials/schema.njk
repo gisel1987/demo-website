@@ -1,0 +1,50 @@
+{%- set s = settings -%}
+{%- set root = s.url | replace(r/\/$/, "") -%}
+{%- set counties = areas | county_schema -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HouseCleaningService",
+      "@id": "{{ root }}/#business",
+      "name": {{ s.business_name | json | safe }},
+      "url": "{{ root }}/",
+      "telephone": "+1-{{ s.phone }}",
+      "email": {{ s.email | json | safe }},
+      "logo": "{{ root }}/assets/favicon.svg",
+      {%- if home.hero_image and home.hero_image.src %}
+      "image": {{ (home.hero_image.src + "?auto=format&fit=crop&w=1200&q=80" if home.hero_image.src.startsWith("http") else root + home.hero_image.src) | json | safe }},
+      {%- endif %}
+      "description": {{ home.description | json | safe }},
+      {%- if s.show_base_city %}
+      "address": { "@type": "PostalAddress", "addressLocality": {{ s.base_city | json | safe }}, "addressRegion": {{ s.base_state | json | safe }}, "addressCountry": "US" },
+      {%- endif %}
+      {%- if s.google_business_profile_url %}
+      "sameAs": [{{ s.google_business_profile_url | json | safe }}],
+      {%- endif %}
+      "areaServed": {{ counties | json | safe }}
+    }
+    {%- if form_key %},
+    {
+      "@type": "Service",
+      "name": {{ title | json | safe }},
+      "serviceType": {{ title | json | safe }},
+      "description": {{ description | json | safe }},
+      "url": "{{ page.url | absolute(root) }}",
+      "provider": { "@id": "{{ root }}/#business" },
+      "areaServed": {{ counties | json | safe }}
+    }
+    {%- endif %}
+    {%- if page.url != "/" %},
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ root }}/" },
+        { "@type": "ListItem", "position": 2, "name": {{ (title or "Page") | json | safe }}, "item": "{{ page.url | absolute(root) }}" }
+      ]
+    }
+    {%- endif %}
+  ]
+}
+</script>

@@ -1,0 +1,10 @@
+# Before-and-after projects. Edit in Pages CMS → "Before & after gallery".
+# Upload a before photo and an after photo for each project. The gallery stays hidden until one project is added.
+projects: []
+# Example of one project:
+#  - title: Kitchen after renovation
+#    service: Post-Construction Cleaning
+#    town: Clifton, NJ
+#    before: /assets/uploads/clifton-kitchen-before.jpg
+#    after: /assets/uploads/clifton-kitchen-after.jpg
+#    note: Drywall dust, paint specks and sticker residue removed before the final walkthrough.

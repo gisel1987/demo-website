@@ -1,0 +1,13 @@
+<section class="block reviews"><div class="wrap">
+  <div class="section-head split-head"><div><span class="eyebrow">Reviews</span><h2>What our customers say.</h2></div>
+  {%- if settings.google_business_profile_url %}<a class="btn btn-outline" href="{{ settings.google_business_profile_url }}" rel="noopener">See reviews on Google</a>{% endif %}</div>
+  <div class="review-grid">
+    {%- for r in reviews.reviews %}
+    <figure class="review">
+      <div class="stars" aria-label="{{ r.rating or 5 }} out of 5 stars">{% for i in range(0, r.rating or 5) %}{% icon "star" %}{% endfor %}</div>
+      <blockquote>{{ r.text }}</blockquote>
+      <figcaption><b>{{ r.name }}</b>{% if r.town %} · {{ r.town }}{% endif %}{% if r.service %}<span>{{ r.service }}</span>{% endif %}</figcaption>
+    </figure>
+    {%- endfor %}
+  </div>
+</div></section>

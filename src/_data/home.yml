@@ -1,0 +1,26 @@
+# Home page text and photo. Edit in Pages CMS → "Home page".
+seo_title: "Cleaning Services in Northern & Central NJ | G&E Cleaning"
+description: "Residential, deep, move-out, post-construction and commercial cleaning in Bergen, Passaic, Essex & Morris County, NJ. Insured. Free quotes."
+keywords: cleaning services North Jersey, house cleaning Bergen County, post-construction cleaning NJ, commercial cleaning Passaic County, move out cleaning Morris County, Essex County cleaning company
+
+hero_eyebrow: Fully insured · WMBE certified
+hero_heading: Spotless homes. Job-ready sites. One trusted team.
+hero_text: Residential, deep, move-in/move-out, post-construction and commercial cleaning across Northern & Central New Jersey.
+hero_image:
+  src: https://images.unsplash.com/photo-1641159930908-e9eb9ccdc002
+  alt: Bright, empty commercial space with white columns, cleaned and ready for handoff
+
+homes_heading: For homes
+homes_text: Regular upkeep, a top-to-bottom reset, or a move. We leave your place clean, fresh and ready.
+business_heading: For builders & businesses
+business_text: Construction cleanup and commercial cleaning that keep your schedule, your inspections and your tenants on track.
+
+steps:
+  - title: Request a quote
+    text: Tell us about the property, the service and your timeline.
+  - title: Get a clear plan
+    text: We confirm scope, timing and price before we start.
+  - title: We clean
+    text: Our crew works from a detailed checklist for your service.
+  - title: You walk through
+    text: A space that's ready for move-in, handoff, inspection or guests.

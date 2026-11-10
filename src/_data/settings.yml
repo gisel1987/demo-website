@@ -1,0 +1,34 @@
+# Business details used across the whole site. Edit in Pages CMS → "Business settings".
+business_name: G&E Cleaning Solutions
+phone: 201-675-7271
+email: info@gecleaningsolutions.com
+
+# Service-area business: no street address is ever shown.
+# The city appears in the footer and in Google's business data. Set show_base_city to false to hide it.
+base_city: Totowa
+base_state: NJ
+show_base_city: true
+
+service_area_summary: Northern & Central New Jersey, Rockland County NY & Eastern PA
+primary_counties: [Bergen, Passaic, Essex, Morris]
+credentials:
+  - Fully insured
+  - WMBE certified
+  - Woman-owned
+hours_note: Available weekdays, evenings & weekends
+
+# Website address (no trailing slash). Used for Google, sitemaps and share previews.
+url: https://gecleaningsolutions.com
+
+# Quote form: paste the Formspree endpoint, e.g. https://formspree.io/f/abcdwxyz
+form_endpoint: ""
+# Photo uploads on the quote form need a Formspree plan that includes file uploads.
+form_accepts_photos: true
+
+# Google
+google_analytics_id: ""          # GA4 Measurement ID, e.g. G-XXXXXXXXXX
+google_site_verification: ""     # Search Console HTML-tag code (or verify with DNS instead)
+google_business_profile_url: ""  # Link to the Google Business Profile / reviews
+
+# Shows the "Concept demo" bar at the top. Turn off at launch.
+demo_banner: true

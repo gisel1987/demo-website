@@ -1,0 +1,195 @@
+# Pages CMS — no-code editor for the G&E website (https://app.pagescms.org)
+# Every save here commits to GitHub and the site republishes automatically in about a minute.
+
+media:
+  input: src/assets/uploads
+  output: /assets/uploads
+
+content:
+  # ---------------------------------------------------------------- Business settings
+  - name: settings
+    label: Business settings
+    type: file
+    path: src/_data/settings.yml
+    format: yaml
+    fields:
+      - { name: business_name, label: Business name, type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: email, label: Business email, type: string }
+      - { name: base_city, label: Base city (no street address is ever shown), type: string }
+      - { name: base_state, label: State, type: string }
+      - { name: show_base_city, label: Show the base city on the site, type: boolean }
+      - { name: service_area_summary, label: Service area (one line), type: string }
+      - { name: primary_counties, label: Focus counties, type: string, list: true }
+      - { name: credentials, label: Credentials (shown in the top bar and badges), type: string, list: true }
+      - { name: hours_note, label: Availability, type: string }
+      - { name: url, label: Website address, type: string, description: "No trailing slash, e.g. https://gecleaningsolutions.com" }
+      - { name: form_endpoint, label: Quote form endpoint (Formspree), type: string, description: "e.g. https://formspree.io/f/abcdwxyz. Leave empty to keep the form in demo mode." }
+      - { name: form_accepts_photos, label: Allow photo uploads on the quote form, type: boolean, description: "Requires a Formspree plan with file uploads." }
+      - { name: google_analytics_id, label: Google Analytics ID, type: string, description: "GA4 Measurement ID, e.g. G-XXXXXXXXXX" }
+      - { name: google_site_verification, label: Google Search Console verification code, type: string }
+      - { name: google_business_profile_url, label: Google Business Profile link, type: string }
+      - { name: demo_banner, label: Show the "Concept demo" bar (turn off at launch), type: boolean }
+
+  # ---------------------------------------------------------------- Home page
+  - name: home
+    label: Home page
+    type: file
+    path: src/_data/home.yml
+    format: yaml
+    fields:
+      - { name: seo_title, label: Google title (under 60 characters), type: string }
+      - { name: description, label: Google description (under 160 characters), type: text }
+      - { name: keywords, label: Keywords, type: text }
+      - { name: hero_eyebrow, label: Small line above the headline, type: string }
+      - { name: hero_heading, label: Headline, type: string }
+      - { name: hero_text, label: Text under the headline, type: text }
+      - name: hero_image
+        label: Main photo
+        type: object
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: Photo description (for Google and screen readers), type: string }
+      - { name: homes_heading, label: '"For homes" heading', type: string }
+      - { name: homes_text, label: '"For homes" text', type: text }
+      - { name: business_heading, label: '"For builders & businesses" heading', type: string }
+      - { name: business_text, label: '"For builders & businesses" text', type: text }
+      - name: steps
+        label: How it works (4 steps)
+        type: object
+        list: { min: 2, max: 6 }
+        fields:
+          - { name: title, label: Step, type: string }
+          - { name: text, label: Description, type: text }
+
+  # ---------------------------------------------------------------- Services
+  - name: services
+    label: Services
+    type: collection
+    path: src/services
+    format: yaml-frontmatter
+    exclude: [services.json]
+    view:
+      fields: [title, order]
+      sort: [order]
+    fields:
+      - { name: title, label: Service name, type: string, required: true }
+      - { name: nav_label, label: Short name for the menu, type: string }
+      - { name: order, label: Order in the menu, type: number }
+      - { name: form_key, label: Quote form key (don't change), type: string, readonly: true }
+      - { name: permalink, label: Page address (don't change after launch), type: string }
+      - { name: seo_title, label: Google title (under 60 characters), type: string }
+      - { name: description, label: Google description (under 160 characters), type: text }
+      - { name: keywords, label: Keywords, type: text }
+      - { name: eyebrow, label: Small line above the headline, type: string }
+      - { name: hero_heading, label: Headline, type: string }
+      - { name: intro, label: Intro text, type: text }
+      - name: hero_image
+        label: Main photo
+        type: object
+        fields:
+          - { name: src, label: Photo, type: image }
+          - { name: alt, label: Photo description, type: string }
+      - { name: who_for, label: Who it's for, type: string, list: true }
+      - { name: includes, label: What's included, type: string, list: true }
+      - name: highlight
+        label: Highlight section
+        type: object
+        fields:
+          - { name: heading, label: Heading, type: string }
+          - name: items
+            label: Items
+            type: object
+            list: { min: 2, max: 4 }
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: text, label: Text, type: text }
+      - name: faqs
+        label: Common questions
+        type: object
+        list: true
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: a, label: Answer, type: text }
+      - { name: body, label: Page text, type: rich-text }
+
+  # ---------------------------------------------------------------- Reviews
+  - name: reviews
+    label: Customer reviews
+    type: file
+    path: src/_data/reviews.yml
+    format: yaml
+    fields:
+      - name: reviews
+        label: Reviews (real reviews only)
+        type: object
+        list: { collapsible: true }
+        fields:
+          - { name: name, label: Customer name (as shown on Google), type: string }
+          - { name: town, label: Town, type: string }
+          - { name: service, label: Service, type: select, options: { values: [Residential Cleaning, Deep Cleaning, Move-In/Move-Out Cleaning, Post-Construction Cleaning, Commercial Cleaning] } }
+          - { name: rating, label: Stars, type: number }
+          - { name: text, label: Review, type: text }
+          - { name: source, label: Source, type: select, options: { values: [Google, Facebook, Yelp, Direct] } }
+
+  # ---------------------------------------------------------------- Before & after
+  - name: gallery
+    label: Before & after gallery
+    type: file
+    path: src/_data/gallery.yml
+    format: yaml
+    fields:
+      - name: projects
+        label: Projects
+        type: object
+        list: { collapsible: true }
+        fields:
+          - { name: title, label: Project title, type: string }
+          - { name: service, label: Service, type: select, options: { values: [Residential Cleaning, Deep Cleaning, Move-In/Move-Out Cleaning, Post-Construction Cleaning, Commercial Cleaning] } }
+          - { name: town, label: Town, type: string }
+          - { name: before, label: Before photo, type: image }
+          - { name: after, label: After photo, type: image }
+          - { name: note, label: Short note, type: text }
+
+  # ---------------------------------------------------------------- Service areas
+  - name: areas
+    label: Service areas (counties & towns)
+    type: file
+    path: src/_data/areas.yml
+    format: yaml
+    fields:
+      - name: states
+        label: States
+        type: object
+        list: { collapsible: true }
+        fields:
+          - { name: name, label: State, type: string }
+          - { name: abbr, label: Abbreviation, type: string }
+          - name: counties
+            label: Counties
+            type: object
+            list: { collapsible: true }
+            fields:
+              - { name: name, label: County, type: string }
+              - { name: focus, label: Focus county (featured first), type: boolean }
+              - { name: towns, label: Towns, type: string, list: true }
+
+  # ---------------------------------------------------------------- Town pages (future SEO pages)
+  - name: town_pages
+    label: Town pages
+    type: collection
+    path: src/areas
+    format: yaml-frontmatter
+    exclude: [areas.json]
+    filename: "{fields.title}.md"
+    view:
+      fields: [title, county, draft]
+    fields:
+      - { name: title, label: Town, type: string, description: "e.g. Wayne, NJ" }
+      - { name: county, label: County, type: string }
+      - { name: draft, label: Draft (hidden from the site), type: boolean, default: true }
+      - { name: seo_title, label: Google title (under 60 characters), type: string }
+      - { name: description, label: Google description (under 160 characters), type: text }
+      - { name: intro, label: Intro line, type: text }
+      - { name: services, label: Services offered here, type: select, options: { multiple: true, values: [residential, deep, move, post_construction, commercial] } }
+      - { name: body, label: Local page text (write unique text for each town), type: rich-text }

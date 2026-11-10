@@ -1,0 +1,29 @@
+{%- set s = settings -%}
+<footer class="site-footer"><div class="wrap">
+  <div class="foot-grid foot-4">
+    <div>
+      <a class="brand" href="/"><span class="brand-mark">G&amp;E</span><span class="brand-text"><strong>{{ s.business_name }}</strong></span></a>
+      <p class="foot-blurb">Residential, move, construction and commercial cleaning across {{ s.service_area_summary }}.</p>
+      <p class="foot-creds">{{ s.credentials | join(" · ") }}</p>
+    </div>
+    <div><h4>Services</h4><ul>
+      {%- for svc in collections.services %}<li><a href="{{ svc.url }}">{{ svc.data.title }}</a></li>{% endfor %}
+    </ul></div>
+    <div><h4>Company</h4><ul>
+      <li><a href="/about/">About Us &amp; Our Work</a></li>
+      <li><a href="/service-areas/">Service Areas</a></li>
+      <li><a href="/contact/">Request a Free Quote</a></li>
+      {%- if s.google_business_profile_url %}<li><a href="{{ s.google_business_profile_url }}" rel="noopener">Reviews on Google</a></li>{% endif %}
+    </ul></div>
+    <div><h4>Contact</h4><ul>
+      <li><a href="tel:+1{{ s.phone | digits }}">{{ s.phone }}</a></li>
+      <li><a href="mailto:{{ s.email }}">{{ s.email }}</a></li>
+      {%- if s.show_base_city %}<li>Based in {{ s.base_city }}, {{ s.base_state }}</li>{% endif %}
+      <li>{{ s.hours_note }}</li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom"><span>© {{ "" | year }} {{ s.business_name }}</span><span>Serving {{ s.primary_counties | join(", ") }} counties and beyond</span></div>
+</div></footer>
+{%- if page.url != "/contact/" %}
+<div class="mobile-call"><a class="btn call" href="tel:+1{{ s.phone | digits }}" aria-label="Call {{ s.phone }}">{% icon "phone" %} Call</a><a class="btn btn-primary" href="/contact/{% if form_key %}?service={{ form_key }}{% endif %}">Request a Free Quote</a></div>
+{%- endif %}

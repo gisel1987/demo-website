@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+permalink: /about/
+title: About Us & Our Work
+seo_title: "About G&E Cleaning Solutions | Woman-Owned NJ Cleaners"
+description: "Woman-owned, WMBE-certified and fully insured cleaning company serving Northern & Central NJ. See our before-and-after work and reviews."
+keywords: woman-owned cleaning company NJ, WMBE certified cleaning company, insured cleaning company North Jersey, cleaning company Passaic County
+about_photos:
+  - src: https://images.unsplash.com/photo-1502005097973-6a7082348e28
+    alt: Spotless modern kitchen with white island and cabinets
+    label: Residential
+  - src: https://images.unsplash.com/photo-1577412647305-991150c7d163
+    alt: Clean open-plan office with white desks and glass partitions
+    label: Commercial
+---
+<section class="page-hero"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> About</nav>
+  <span class="eyebrow light">Woman-owned · WMBE certified · Fully insured</span>
+  <h1>Reliable. Detailed. Done right.</h1>
+  <p>We understand deadlines, busy households, tight turnovers and the pressure of a final walkthrough. Our team is built to make every clean easier.</p>
+  <div class="hero-actions"><a class="btn btn-primary btn-lg" href="/contact/">Request a Free Quote {% icon "arrow" %}</a></div>
+</div></section>
+
+<section class="block"><div class="wrap split">
+  <div>
+    <span class="eyebrow">Why G&amp;E Cleaning Solutions</span>
+    <h2 class="h2-lg">One team, homes to job sites.</h2>
+    <ul class="checks">
+      <li>{% icon "check" %}{{ settings.hours_note }}, around your schedule</li>
+      <li>{% icon "check" %}Residential, move, construction and commercial cleaning in one company</li>
+      <li>{% icon "check" %}Insured and WMBE certified, with documentation available the same day</li>
+      <li>{% icon "check" %}A detailed checklist for every service, every visit</li>
+    </ul>
+  </div>
+  <div class="photo-pair">
+    {%- for ph in about_photos %}
+    <figure class="ph ph{{ loop.index }}">{% photo ph, "", "(max-width: 640px) 50vw, 25vw", "3:4" %}<figcaption>{{ ph.label }}</figcaption></figure>
+    {%- endfor %}
+  </div>
+</div></section>
+
+<section class="founder tint"><div class="wrap founder-grid">
+  <div class="founder-mark" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="#021A34"/><circle cx="100" cy="100" r="96" fill="none" stroke="#4296BF" stroke-width="4" stroke-dasharray="10 8"/><text x="100" y="118" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="800" font-size="56" fill="#fff">G&amp;E</text></svg>
+  </div>
+  <div>
+    <span class="eyebrow">Woman-owned &amp; job-site tough</span>
+    <h2>Built by a woman who knows deadlines don't move.</h2>
+    <p>A woman-owned partner who shows up prepared and leaves every space ready, whether that's a family home or a final walkthrough. Our WMBE certification also helps contractors and developers meet supplier diversity goals.</p>
+  </div>
+</div></section>
+
+<section class="block" id="our-work"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Our work</span><h2>Before &amp; after.</h2></div>
+  {%- if gallery.projects and gallery.projects.length %}
+    {% set galleryLimit = 0 %}{% include "partials/gallery.njk" %}
+  {%- else %}
+  <div class="empty-state">{% icon "camera" %}<div><b>Project photos are on the way.</b><p>We're adding before-and-after photos from recent jobs. Ask us for examples of work like yours when you request a quote.</p></div></div>
+  {%- endif %}
+</div></section>
+
+{%- if reviews.reviews and reviews.reviews.length %}
+{% include "partials/reviews.njk" %}
+{%- endif %}
+
+{% include "partials/quote-card.njk" %}
