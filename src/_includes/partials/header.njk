@@ -1,7 +1,7 @@
 {%- set s = settings -%}
 <a class="skip" href="#main">Skip to content</a>
 {%- if s.demo_banner %}
-<div class="demo-bar"><b>Concept demo</b> — redesign preview for {{ s.business_name }}</div>
+<div class="demo-bar"><b>Draft for approval</b> — new {{ s.business_name | replace("&", "&amp;") }} website</div>
 {%- endif %}
 <div class="topbar"><div class="wrap topbar-row">
   <span>{% icon "pin" %} Serving {{ s.service_area_summary }}</span>
